@@ -1,23 +1,25 @@
 console.log('loaded...');
 
 var currentDate = new Date(Date.now());
+var date = currentDate.getDate();
 var currentMonth = currentDate.getMonth();
 var currentYear = currentDate.getFullYear();
 
 setCalendar(currentMonth, currentYear);
 setYear(currentYear);
 
-$('.calendar').text(monthToString(currentMonth) + " " + currentDate.getDate());
+$('.calendar').text(monthToString(currentMonth) + " " + date);
 
 
 // Click on today
 $('.today').on('click', function(event) {
 	currentDate = new Date(Date.now());
+	date = currentDate.getDate();
 	currentMonth = currentDate.getMonth();
 	currentYear = currentDate.getFullYear();
+	$('.yy').removeClass('active');
+	$('.mnth').removeClass('active');
 	setCalendar(currentMonth, currentYear);
-	// $('.yy').removeClass('active');
-	// $('.mnth').removeClass('active');
 	document.getElementById("dataTableDate").style.display="table";
     document.getElementById("datesTable").style.display="table";
     document.getElementById("dataTableYear").style.display="none";
@@ -26,11 +28,60 @@ $('.today').on('click', function(event) {
     document.getElementById("yearsTable").style.display="none";
 });
 
+// Click on days table
+$('.firstWeek').each(function(index, item) {
+	$(item).on('click', function(event) {
+		date = $(item).text();
+		if ($(item).text() > 7) {
+			currentMonth--;
+		};
+		setCalendar(currentMonth, currentYear);
+	});
+});
+$('.secondWeek').each(function(index, item) {
+	$(item).on('click', function(event) {
+		date = $(item).text();
+		activeDay($(item).text());
+		setCalendar(currentMonth, currentYear);
+	});
+});
+$('.thirdWeek').each(function(index, item) {
+	$(item).on('click', function(event) {
+		date = $(item).text();
+		activeDay($(item).text());
+		setCalendar(currentMonth, currentYear);
+	});
+});
+$('.fourthWeek').each(function(index, item) {
+	$(item).on('click', function(event) {
+		date = $(item).text();
+		activeDay($(item).text());
+		setCalendar(currentMonth, currentYear);
+	});
+});
+$('.fifthWeek').each(function(index, item) {
+	$(item).on('click', function(event) {
+		date = $(item).text();
+		if ($(item).text() < 15) {
+			currentMonth++;
+		};
+		setCalendar(currentMonth, currentYear);
+	});
+});
+$('.sixthWeek').each(function(index, item) {
+	$(item).on('click', function(event) {
+		date = $(item).text();
+		if ($(item).text() < 15) {
+			currentMonth++;
+		};
+		setCalendar(currentMonth, currentYear);
+	});
+});
 // Click on months table
 $('.mnth').each(function(index, item) {
 	$(item).on('click', function(event) {
 	$('.mnth').removeClass('active');
-	$(this).addClass('active');
+	$(this).addClass('active').wrapInner("<div class='elipce1'></div>");
 	currentMonth = index;
 	setCalendar(currentMonth, currentYear);
     document.getElementById("dataTableYear").style.display="none";
@@ -44,7 +95,7 @@ $('.mnth').each(function(index, item) {
 $('.yy').each(function(index, item) {
 	$(item).on('click', function(event) {
 	$('.yy').removeClass('active');
-	$(this).addClass('active');
+	$(this).addClass('active').wrapInner("<div class='elipce'></div>");
 	currentYear = parseInt($(item).text());
 	setCalendar(currentMonth, currentYear);
     document.getElementById("dataTableYears").style.display="none";
@@ -109,23 +160,18 @@ $('.prevYears').on('click', function(event) {
 });
 
 // Click on next years item
-
 $('.nextYears').on('click', function(event){
 	currentYear += 16;
 	setYear(currentYear);
 });
 
-// dayOfYear function returns the number of date in year ( 1 - 366)
-function dayOfYear(date) {
-	start = new Date(date.getFullYear(), 0, 0);
-	diff = date- start;
-	oneDay = 1000 * 60 * 60 * 24;
-	day = Math.round(diff / oneDay);
-	return day;
-}
-
 // show days table
 $('.showCalendar').on('click', function(event) {
+	currentDate = new Date(Date.now());
+	date = currentDate.getDate();
+	currentMonth = currentDate.getMonth();
+	currentYear = currentDate.getFullYear();
+	setCalendar(currentMonth, currentYear);
 	if (document.getElementById("datesTable").style.display=="table" || 
 		document.getElementById("monthsTable").style.display=="table" ||
 		document.getElementById("yearsTable").style.display=="table") {
@@ -140,10 +186,6 @@ $('.showCalendar').on('click', function(event) {
 	else{
 		$('.yy').removeClass('active');
 		$('.mnth').removeClass('active');
-		currentDate = new Date(Date.now());
-		currentMonth = currentDate.getMonth();
-		currentYear = currentDate.getFullYear();
-		setCalendar(currentMonth, currentYear);
 	    document.getElementById("dataTableDate").style.display="table";
         document.getElementById("datesTable").style.display="table";
         document.getElementById("today").style.display="table";
@@ -153,7 +195,10 @@ $('.showCalendar').on('click', function(event) {
 
 // show months table
 $('.month').on('click', function(event) {
-	    document.getElementById("dataTableDate").style.display="none";
+		$('.yy').removeClass('active');
+		$('.mnth').removeClass('active');
+		setCalendar(currentMonth, currentYear);
+		document.getElementById("dataTableDate").style.display="none";
         document.getElementById("datesTable").style.display="none";
        	document.getElementById("dataTableYear").style.display="table";
         document.getElementById("monthsTable").style.display="table";
@@ -161,11 +206,24 @@ $('.month').on('click', function(event) {
 
 // show years table
 $('.year').on('click', function(event) {
+		$('.yy').removeClass('active');
+		$('.mnth').removeClass('active');
+		setCalendar(currentMonth, currentYear);
 	    document.getElementById("dataTableYear").style.display="none";
         document.getElementById("monthsTable").style.display="none";
        	document.getElementById("dataTableYears").style.display="table";
         document.getElementById("yearsTable").style.display="table";
 })
+
+
+// dayOfYear function returns the number of date in year ( 1 - 366)
+function dayOfYear(date) {
+	start = new Date(date.getFullYear(), 0, 0);
+	diff = date- start;
+	oneDay = 1000 * 60 * 60 * 24;
+	day = Math.round(diff / oneDay);
+	return day;
+}
 
 // displays the calendar for receipted month and year
 function setCalendar(month, year){
@@ -203,7 +261,7 @@ function setCalendar(month, year){
 	setYear(currentYear);
 	$('.mnth').each(function(index, item){
 		if (index == currentMonth) {
-			$(this).addClass('active');
+			$(this).addClass('active').wrapInner("<div class='elipce1'></div>");
 		};
 	});
 	$('.firstWeek').each(function(index,item) {
@@ -230,56 +288,8 @@ function setCalendar(month, year){
 			document.getElementById(index+"6").style.color = "white";
 		}
 	});
-	if (currentDate.getDate() <= 14) {
-		$('.firstWeek').each(function(index, item) {
-			if ($(item).text() == currentDate.getDate()) {
-				$('.firstWeek').removeClass('active');
-				$('.secondWeek').removeClass('active');
-				$(this).addClass('active');
-			};
-		});
-		$('.secondWeek').each(function(index, item) {
-			if ($(item).text() == currentDate.getDate()) {
-				$('.firshWeek').removeClass('active');
-				$('.secondWeek').removeClass('active');
-				$('.thirdWeek').removeClass('active');
-				$(this).addClass('active');
-			};
-		});
-	}
-	else{
-		$('.thirdWeek').each(function(index, item) {
-			if ($(item).text() == currentDate.getDate()) {
-				$('.secondWeek').removeClass('active');
-				$('.thirdWeek').removeClass('active');
-				$('.fourthWeek').removeClass('active');
-				$(this).addClass('active');
-			};
-		});
-		$('.fourthWeek').each(function(index, item) {
-			if ($(item).text() == currentDate.getDate()) {
-				$('.thirdWeek').removeClass('active');
-				$('.fourthWeek').removeClass('active');
-				$('.fifthWeek').removeClass('active');
-				$(this).addClass('active').wrapInner("<div class='round'></div>");
-			};
-		});
-		$('.fifthWeek').each(function(index, item) {
-			if ($(item).text() == currentDate.getDate()) {
-				$('.fourthWeek').removeClass('active');
-				$('.fifthWeek').removeClass('active');
-				$('.sixthWeek').removeClass('active');				
-				$(this).addClass('active');
-			};
-		});
-		$('.sixthWeek').each(function(index, item) {
-			if ($(item).text() == currentDate.getDate()) {
-				$('.fifthWeek').removeClass('active');
-				$('.sixthWeek').removeClass('active');	
-				$(this).addClass('active');
-			};
-		});
-	}
+	activeDay(date);
+	$('.calendar').text(monthToString(currentMonth) + " " + date);
 }
 
 // displays table of 16 years with receipted year
@@ -288,7 +298,7 @@ function setYear(yy){
 	$('.yy').each(function(index, item){
 		$(item).text(yy + index);
 		if ((yy + index) == currentYear) {
-			$(this).addClass('active');
+			$(this).addClass('active').wrapInner("<div class='elipce'></div>");
 		};
 	})
 	$('.years').text(yy + " - " + (yy + 15));
@@ -311,3 +321,71 @@ function monthToString(m){
 		case(11): return "December";
 	}
 }
+function activeDay(day){
+		$('.firstWeek').each(function(index, item) {
+			if ($(item).text() == day && day < 14) {
+				$('.firstWeek').removeClass('active');
+				$('.secondWeek').removeClass('active');
+				$('.thirdWeek').removeClass('active');
+				$('.fourthWeek').removeClass('active');
+				$('.fifthWeek').removeClass('active');
+				$('.sixthWeek').removeClass('active');				
+				$(this).addClass('active').wrapInner("<div class='round'></div>");
+			};
+		});
+		$('.secondWeek').each(function(index, item) {
+			if ($(item).text() == day) {
+				$('.firstWeek').removeClass('active');
+				$('.secondWeek').removeClass('active');
+				$('.thirdWeek').removeClass('active');
+				$('.fourthWeek').removeClass('active');
+				$('.fifthWeek').removeClass('active');
+				$('.sixthWeek').removeClass('active');				
+				$(this).addClass('active').wrapInner("<div class='round'></div>");
+			};
+		});
+		$('.thirdWeek').each(function(index, item) {
+			if ($(item).text() == day) {
+				$('.firstWeek').removeClass('active');
+				$('.secondWeek').removeClass('active');
+				$('.thirdWeek').removeClass('active');
+				$('.fourthWeek').removeClass('active');
+				$('.fifthWeek').removeClass('active');
+				$('.sixthWeek').removeClass('active');				
+				$(this).addClass('active').wrapInner("<div class='round'></div>");
+			};
+		});
+		$('.fourthWeek').each(function(index, item) {
+			if ($(item).text() == day) {
+				$('.firstWeek').removeClass('active');
+				$('.secondWeek').removeClass('active');
+				$('.thirdWeek').removeClass('active');
+				$('.fourthWeek').removeClass('active');
+				$('.fifthWeek').removeClass('active');
+				$('.sixthWeek').removeClass('active');				
+				$(this).addClass('active').wrapInner("<div class='round'></div>");
+			};
+		});
+		$('.fifthWeek').each(function(index, item) {
+			if ($(item).text() == day && day > 14) {
+				$('.firstWeek').removeClass('active');
+				$('.secondWeek').removeClass('active');
+				$('.thirdWeek').removeClass('active');
+				$('.fourthWeek').removeClass('active');
+				$('.fifthWeek').removeClass('active');
+				$('.sixthWeek').removeClass('active');				
+				$(this).addClass('active').wrapInner("<div class='round'></div>");
+			};
+		});
+		$('.sixthWeek').each(function(index, item) {
+			if ($(item).text() == day && day > 14) {
+				$('.firstWeek').removeClass('active');
+				$('.secondWeek').removeClass('active');
+				$('.thirdWeek').removeClass('active');
+				$('.fourthWeek').removeClass('active');
+				$('.fifthWeek').removeClass('active');
+				$('.sixthWeek').removeClass('active');				
+				$(this).addClass('active').wrapInner("<div class='round'></div>");
+			};
+		});
+	}

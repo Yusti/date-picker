@@ -19,7 +19,8 @@
 		</thead>
 	</table>
 	</div>
-	<div class="container main">
+	<div class="container main" id="mainConteiner">
+	<div class="names">
 	<table class="table" id="dataTableDate" style="display:none">
 		<thead>
 		  	<tr>
@@ -31,7 +32,7 @@
 		    </tr>
 	    </thead>
 	</table>
-	
+	</div>
 	<table class="table" id="datesTable" style="display:none">	
 	    <thead>
 	        <tr>
@@ -101,7 +102,7 @@
 	        </tr>
 	    </tbody>
 	</table>
-	    
+<div class="names">	    
 	<table class="table" id="dataTableYear" style="display:none">
 		<thead>
 		  	<tr>
@@ -110,12 +111,11 @@
 		    	<td class="text-right nextYear">
 		    		<span class="glyphicon glyphicon-menu-right"></span>
 		    	</td>
-
 		    </tr>
 	    </thead>
 	</table>
-
-	<table class="table" id="monthsTable" style="display:none">	
+</div>
+	<table class="table months" id="monthsTable" style="display:none">	
 	    <tbody>
 	        <tr>
 	        	<td class="text-center mnth">Jan</td>
@@ -139,9 +139,10 @@
 	        </tr>
 	    </tbody>
 	</table>
-
+<div class="names">
 	<table class="table" id="dataTableYears" style="display:none">
 		<thead>
+
 		  	<tr>
 		  		<td><span class="glyphicon glyphicon-menu-left prevYears"></span></td>
 	 		    <td class="text-center years">Year</td>
@@ -151,8 +152,9 @@
 		    </tr>
 	    </thead>
 	</table>
+</div>
 
-	<table class="table" id="yearsTable" style="display:none">	
+	<table class="table months" id="yearsTable" style="display:none">	
 	    <tbody>
 	        <tr>
 		        <td class="text-center yy"></td>
