@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calendar</title>
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/calendar.css">
+</head>
+<body>
+<div class="wrapper">
+	<div class="container titleContainer">
+	<table class="table titleTable">
+		<thead>
+			<tr>
+				<td><h5 class="text-left calendar">Calendar</h5></td>
+				<td class="text-right showCalendar">
+					<span class="glyphicon glyphicon-calendar"></span>
+				</td>
+			</tr>
+		</thead>
+	</table>
+	</div>
+	<div class="container main">
+	<table class="table" id="dataTableDate" style="display:none">
+		<thead>
+		  	<tr>
+		    	<td><span class="glyphicon glyphicon-menu-left prevMonth"></span></td>
+		    	<td class="text-center month">month</h5></td>
+		    	<td class="text-right nextMonth">
+		    		<span class="glyphicon glyphicon-menu-right"></span>
+		    	</td>
+		    </tr>
+	    </thead>
+	</table>
+	
+	<table class="table" id="datesTable" style="display:none">	
+	    <thead>
+	        <tr>
+	        	<th class="text-center">Su</th>
+	        	<th class="text-center">Mo</th>
+	        	<th class="text-center">Tu</th>
+	        	<th class="text-center">We</th>
+	        	<th class="text-center">Th</th>
+	        	<th class="text-center">Fr</th>
+	        	<th class="text-center">Sa</th>
+	        </tr>
+	    </thead>
+	    <tbody class="text-center">
+	        <tr>
+	        	<td class="firstWeek" id="0"></td>
+	        	<td class="firstWeek" id="1"></td>
+				<td class="firstWeek" id="2"></td>
+	        	<td class="firstWeek" id="3"></td>
+	        	<td class="firstWeek" id="4"></td>
+			  	<td class="firstWeek" id="5"></td>
+	          	<td class="firstWeek" id="6"></td>
+	        </tr>
+	        <tr>
+	          	<td class="secondWeek"></td>
+	          	<td class="secondWeek"></td>
+	          	<td class="secondWeek"></td>
+	          	<td class="secondWeek"></td>
+	          	<td class="secondWeek"></td>
+	          	<td class="secondWeek"></td>
+	          	<td class="secondWeek"></td>
+	        </tr>
+	        <tr>
+		        <td class="thirdWeek"></td>
+		        <td class="thirdWeek"></td>
+		        <td class="thirdWeek"></td>
+		        <td class="thirdWeek"></td>
+		        <td class="thirdWeek"></td>
+		        <td class="thirdWeek"></td>
+		        <td class="thirdWeek"></td>
+	        </tr>
+	        <tr>
+		        <td class="fourthWeek"></td>
+		        <td class="fourthWeek"></td>
+		        <td class="fourthWeek"></td>
+		        <td class="fourthWeek"></td>
+		        <td class="fourthWeek"></td>
+          		<td class="fourthWeek"></td>
+		        <td class="fourthWeek"></td>
+	        </tr>
+	        <tr>
+		        <td class="fifthWeek" id="05"></td>
+		        <td class="fifthWeek" id="15"></td>
+		        <td class="fifthWeek" id="25"></td>
+		        <td class="fifthWeek" id="35"></td>
+		        <td class="fifthWeek" id="45"></td>
+		        <td class="fifthWeek" id="55"></td>
+		        <td class="fifthWeek" id="65"></td>
+	        </tr>
+	        <tr>
+		        <td class="sixthWeek" id="06"></td>
+		        <td class="sixthWeek" id="16"></td>
+		        <td class="sixthWeek" id="26"></td>
+		        <td class="sixthWeek" id="36"></td>
+		        <td class="sixthWeek" id="46"></td>
+		        <td class="sixthWeek" id="56"></td>
+		        <td class="sixthWeek" id="66"></td>
+	        </tr>
+	    </tbody>
+	</table>
+	    
+	<table class="table" id="dataTableYear" style="display:none">
+		<thead>
+		  	<tr>
+		  		<td><span class="glyphicon glyphicon-menu-left prevYear"></span></td>
+		    	<td class="text-center year">Year</h5></td>
+		    	<td class="text-right nextYear">
+		    		<span class="glyphicon glyphicon-menu-right"></span>
+		    	</td>
+
+		    </tr>
+	    </thead>
+	</table>
+
+	<table class="table" id="monthsTable" style="display:none">	
+	    <tbody>
+	        <tr>
+	        	<td class="text-center mnth">Jan</td>
+				<td class="text-center mnth">Feb</td>
+				<td class="text-center mnth">Mar</td>
+	        </tr>
+	        <tr>
+		        <td class="text-center mnth">Apr</td>
+				<td class="text-center mnth">May</td>
+				<td class="text-center mnth">Jun</td>
+	        </tr>
+	        <tr>
+		        <td class="text-center mnth">Jul</td>
+				<td class="text-center mnth">Aug</td>
+				<td class="text-center mnth">Sep</td>
+	        </tr>
+	        <tr>
+		        <td class="text-center mnth">Oct</td>
+				<td class="text-center mnth">Nov</td>
+				<td class="text-center mnth">Dec</td>
+	        </tr>
+	    </tbody>
+	</table>
+
+	<table class="table" id="dataTableYears" style="display:none">
+		<thead>
+		  	<tr>
+		  		<td><span class="glyphicon glyphicon-menu-left prevYears"></span></td>
+	 		    <td class="text-center years">Year</td>
+		      	<td class="text-right nextYears">
+			    	<span class="glyphicon glyphicon-menu-right"></span>
+			    </td>
+		    </tr>
+	    </thead>
+	</table>
+
+	<table class="table" id="yearsTable" style="display:none">	
+	    <tbody>
+	        <tr>
+		        <td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+	        </tr>
+	        <tr>
+		        <td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+	        </tr>
+	        <tr>
+		        <td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+	        </tr>
+		        <td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+				<td class="text-center yy"></td>
+	        </tr>
+	    </tbody>
+	</table>
+
+	<table class="table" id="today" style="display:none">
+		<thead>
+			<tr><td><h5 class="text-center today">Today</h5></td></tr>
+		</thead>
+	</table>
+	</div>
+</div>
+	<script type="text/javascript" src="js/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="js/main.js"></script>
+</body>
+</html>
