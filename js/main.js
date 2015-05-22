@@ -8,7 +8,7 @@ var currentYear = currentDate.getFullYear();
 setCalendar(currentMonth, currentYear);
 setYear(currentYear);
 
-$('.calendar').text(monthToString(currentMonth) + " " + date);
+// $('.calendar').text(monthToString(currentMonth) + " " + date);
 
 
 // Click on today
@@ -33,7 +33,8 @@ $('.firstWeek').each(function(index, item) {
 	$(item).on('click', function(event) {
 		date = $(item).text();
 		if ($(item).text() > 7) {
-			currentMonth--;
+			currentYear += parseInt((currentMonth - (currentMonth-1 +12) % 12)/11);
+			currentMonth = (currentMonth-1 +12) % 12;
 		};
 		setCalendar(currentMonth, currentYear);
 	});
@@ -63,7 +64,8 @@ $('.fifthWeek').each(function(index, item) {
 	$(item).on('click', function(event) {
 		date = $(item).text();
 		if ($(item).text() < 15) {
-			currentMonth++;
+			currentYear += parseInt((currentMonth - (currentMonth+1) % 12)/11);
+			currentMonth = (currentMonth+1) % 12;
 		};
 		setCalendar(currentMonth, currentYear);
 	});
@@ -72,7 +74,8 @@ $('.sixthWeek').each(function(index, item) {
 	$(item).on('click', function(event) {
 		date = $(item).text();
 		if ($(item).text() < 15) {
-			currentMonth++;
+			currentYear += parseInt((currentMonth - (currentMonth+1) % 12)/11);
+			currentMonth = (currentMonth+1) % 12;
 		};
 		setCalendar(currentMonth, currentYear);
 	});

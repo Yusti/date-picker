@@ -20,7 +20,7 @@ border-top: 1px solid rgb(50,52,57);
 border-bottom-color: rgb(50,52,57);
 }
 
-.btn {
+/*.btn {
 display: inline-block;
 padding: 6px 12px;
 margin-bottom: 0;
@@ -38,7 +38,7 @@ user-select: none;
 background-image: none;
 border: 1px solid transparent;
 border-radius: 4px;
-}
+}*/
 h5.text-center.today {
 background-color: rgb(40,42,45);
 width: 200px;
